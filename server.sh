@@ -17,9 +17,6 @@ umod update valheim --dir=/opt/valheim/server -P \
     || umod install valheim --dir=/opt/valheim/server -P
 chmod +x /opt/valheim/server/valheim_server.x86_64
 
-# Trap SIGTERM and perform safe shutdown
-trap "kill -s SIGINT $!" SIGTERM
-
 # Start the server as a background job
 echo "Starting server:"
 echo "    Name    : ${SERVER_NAME}"
@@ -37,6 +34,9 @@ cd /opt/valheim/server
     -batchmode \
     -nographics \
     | tee -a "/opt/valheim/data/${SERVER_WORLD}.log" &
+
+# Trap SIGTERM and perform safe shutdown
+trap "kill -s SIGINT $!" SIGTERM
 
 # Wait for the job to end
 wait $!
