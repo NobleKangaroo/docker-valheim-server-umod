@@ -33,7 +33,7 @@ cd /opt/valheim/server
     -public 1 \
     -batchmode \
     -nographics \
-    | tee -a "/opt/valheim/data/${SERVER_WORLD}.log" &
+    > >(tee -a "/opt/valheim/data/${SERVER_WORLD}.log") &
 
 # Trap SIGTERM and perform safe shutdown
 trap "kill -s SIGINT $!" SIGTERM
