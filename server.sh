@@ -36,7 +36,7 @@ cd /opt/valheim/server
     > >(tee -a "/opt/valheim/data/${SERVER_WORLD}.log") &
 
 # Trap SIGTERM and perform safe shutdown
-trap "kill -s SIGINT $!" SIGTERM
+trap "kill -s SIGINT $!; wait" SIGTERM
 
 # Wait for the job to end
 wait $!
