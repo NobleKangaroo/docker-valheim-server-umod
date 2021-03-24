@@ -13,8 +13,8 @@ export LD_LIBRARY_PATH=/opt/valheim/server/linux64:${LD_LIBRARY_PATH}
 
 # Update or install the server
 echo "Installing Valheim"
-umod update valheim --dir=/opt/valheim/server -P \
-    || umod install valheim --dir=/opt/valheim/server -P
+umod update --force --prerelease --dir=/opt/valheim/server valheim \
+    || umod install --prerelease --dir=/opt/valheim/server valheim
 chmod +x /opt/valheim/server/valheim_server.x86_64
 
 # Start the server as a background job
